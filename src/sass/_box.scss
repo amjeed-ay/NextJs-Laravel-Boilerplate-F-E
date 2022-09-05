@@ -1,0 +1,8 @@
+.box {
+    box-shadow: 0px 3px 20px #0000000b;
+    @apply bg-white rounded-md relative;
+}
+
+div::-webkit-scrollbar {
+    width: 10 !important;
+}

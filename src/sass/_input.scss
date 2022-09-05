@@ -1,0 +1,20 @@
+.input {
+    &[type="radio"] {
+        width: 16px;
+        height: 16px;
+        @apply relative rounded-full overflow-hidden cursor-pointer;
+        &:before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            transition: all 0.2s ease-in-out;
+            @apply bg-theme-1 absolute rounded-full inset-0 m-auto opacity-0;
+        }
+        &:checked {
+            @apply border-theme-1;
+            &:before {
+                @apply opacity-100;
+            }
+        }
+    }
+}

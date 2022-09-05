@@ -1,0 +1,27 @@
+// @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700");
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.content {
+    @apply bg-gray-200;
+    // background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+    //   url("../images/South-Sudan-Famine-Investor-in-the-Family.jpeg") no-repeat;
+
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+p {
+    @apply text-gray-600;
+}
+
+.section-heading {
+    @apply text-4xl text-gray-700 font-bold tracking-wide;
+}
+
+.service-title {
+    @apply text-gray-800 font-semibold text-lg block mb-3 uppercase;
+}
