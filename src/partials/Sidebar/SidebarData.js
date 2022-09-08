@@ -1,9 +1,4 @@
-import {
-    Dashboard,
-    People,
-    Settings,
-    ShieldOutlined,
-} from '@mui/icons-material'
+import { Dashboard, People, ShieldOutlined } from '@mui/icons-material'
 
 export const SidebarData = [
     {
@@ -14,13 +9,13 @@ export const SidebarData = [
     },
     {
         title: 'Roles and Permission',
-        path: '/settings/roles',
+        path: '/roles',
         permission: 'view_role',
         icon: <ShieldOutlined />,
     },
     {
         title: 'Users',
-        path: '/settings/users',
+        path: '/users',
         permission: 'view_user',
         icon: <People />,
     },

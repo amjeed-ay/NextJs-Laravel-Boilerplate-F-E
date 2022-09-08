@@ -14,9 +14,6 @@ const DefaultCrudTemplate = props => {
         from: '',
         to: '',
         page: '',
-        store_id: '',
-        user_id: '',
-        status: '',
     })
 
     const { data, createData, updateData, deleteData } = useCrud({
@@ -64,10 +61,8 @@ const DefaultCrudTemplate = props => {
 
                 <div className="my-2 min-w-full h-full shadow p-2 bg-white rounded-sm overflow-hidden">
                     <Table
-                        HeaderFilter={props?.HeaderFilter}
-                        setSearch={filterData}
-                        del={props.user?.can?.[`delete_${mdl}`]}
-                        edit={props.user?.can?.[`edit_${mdl}`]}
+                        del={props.user?.can?.[`delete_${mdl}`]} // delete permission - boolean
+                        edit={props.user?.can?.[`edit_${mdl}`]} // edit permission - boolean
                         data={data}
                         gotoPage={val =>
                             setFilters({
@@ -75,28 +70,21 @@ const DefaultCrudTemplate = props => {
                                 page: val,
                             })
                         }
+                        setSearch={filterData} // search function
                         setShowModal={setShowModal}
                         handleEdit={handleEdit}
-                        onEdit={props.onEdit}
                         handleDelete={handleDelete}
-                        cols={props.cols}
-                        ssrp={props.ssrp}
+                        {...props}
                     />
                 </div>
             </div>
 
             <Form
-                item={showModal.item}
-                setShowModal={() => setShowModal({ show: false, item: '' })}
-                show={showModal.show}
+                handleClose={() => setShowModal({ show: false, item: '' })}
+                showModal={showModal}
                 createData={createData}
                 updateData={updateData}
-                Fields={props.fields}
-                isGenAdmin={props.user?.isGenAdmin}
-                model={props.model}
-                route={props.route}
-                validation={props.validation}
-                initialValues={props.initialValues}
+                {...props}
             />
         </>
     )

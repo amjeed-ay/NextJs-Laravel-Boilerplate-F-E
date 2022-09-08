@@ -12,31 +12,30 @@ const DepotForm = props => {
     const {
         updateData,
         createData,
-        setShowModal,
-        show,
+        handleClose,
+        showModal,
         validation,
         route,
         model,
         Fields,
         initialValues,
-        item,
     } = props
 
     const { data } = useCrud({
-        route: `${route}/${item}`,
-        callApi: props.show && item,
+        route: `${route}/${showModal.item}`,
+        callApi: showModal.show && showModal.item,
         queryParams: '',
     })
 
     return (
         <Modal
             title={data?.id ? 'Update ' + model : 'New ' + model}
-            show={show}
+            show={showModal.show}
             width={props.modalSize}
             handleClose={() => {
-                setShowModal()
+                handleClose()
             }}>
-            {data || !item ? (
+            {data || !showModal.item ? (
                 <Formik
                     initialValues={initialValues(data)}
                     validationSchema={validation}
@@ -50,7 +49,7 @@ const DepotForm = props => {
                                 model: model,
                                 handleSuccess: () => {
                                     setProcessing(false)
-                                    setShowModal(false)
+                                    handleClose()
                                 },
                                 handleError: () => setProcessing(false),
                             })
@@ -61,7 +60,7 @@ const DepotForm = props => {
                                 model: model,
                                 handleSuccess: () => {
                                     setProcessing(false)
-                                    setShowModal()
+                                    handleClose()
                                 },
                                 handleError: () => setProcessing(false),
                             })

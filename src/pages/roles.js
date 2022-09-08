@@ -2,7 +2,7 @@ import DefaultCrudTemplate from '@/utils/templates/DefaultCrudTemplate'
 import * as Yup from 'yup'
 import Authenticated from '@/Layouts/Authenticated'
 import { useAuth } from '@/hooks/auth'
-import Fields from '@/components/Models/Settings/Roles/Fields'
+import Fields from '@/components/Models/Roles/Fields'
 
 export default function Roles() {
     const { user } = useAuth({ middleware: 'auth' })
@@ -12,7 +12,7 @@ export default function Roles() {
             <DefaultCrudTemplate
                 user={user}
                 cols={cols}
-                fields={Fields}
+                Fields={Fields}
                 route="roles"
                 model="Role"
                 heading="Manage Roles"

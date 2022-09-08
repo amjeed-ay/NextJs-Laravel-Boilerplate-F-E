@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useAuth } from '@/hooks/auth'
 import Transition from '../../utils/Transition'
-import ResponsiveNavButton from '@/components/ResponsiveNavLink'
+import { ArrowDropDown, Person } from '@material-ui/icons'
+import { MenuItem } from '@mui/material'
 
 function UserMenu({ auth }) {
     const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -25,16 +26,6 @@ function UserMenu({ auth }) {
         return () => document.removeEventListener('click', clickHandler)
     })
 
-    // close if the esc key is pressed
-    useEffect(() => {
-        const keyHandler = ({ keyCode }) => {
-            if (!dropdownOpen || keyCode !== 27) return
-            setDropdownOpen(false)
-        }
-        document.addEventListener('keydown', keyHandler)
-        return () => document.removeEventListener('keydown', keyHandler)
-    })
-
     return (
         <div className="relative inline-flex">
             <button
@@ -43,22 +34,11 @@ function UserMenu({ auth }) {
                 aria-haspopup="true"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 aria-expanded={dropdownOpen}>
-                {/* <img
-                    className="w-8 h-8 rounded-full"
-                    src={UserAvatar}
-                    width="32"
-                    height="32"
-                    alt="User"
-                /> */}
                 <div className="flex items-center truncate">
                     <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">
                         {auth?.name}
                     </span>
-                    <svg
-                        className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400"
-                        viewBox="0 0 12 12">
-                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                    </svg>
+                    <ArrowDropDown />
                 </div>
             </button>
 
@@ -77,22 +57,10 @@ function UserMenu({ auth }) {
                     onBlur={() => setDropdownOpen(false)}>
                     <div className="pt-0.5 pb-2 px-3 mb-1 border-b flex border-gray-200">
                         <div className="flex-shrink-0 items-center py-2 pr-2">
-                            <svg
-                                className="h-8 w-8 fill-current text-gray-400"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                />
-                            </svg>
+                            <Person />
                         </div>
 
-                        <div className="">
+                        <div>
                             <div className="font-medium text-gray-800">
                                 {auth?.email}
                             </div>
@@ -109,19 +77,7 @@ function UserMenu({ auth }) {
 
                     <ul>
                         <li>
-                            <ResponsiveNavButton>
-                                <span className="flex flex-col">
-                                    Account Settings{' '}
-                                    <span className="text-xs font-thin">
-                                        Edit information, Change Password
-                                    </span>
-                                </span>
-                            </ResponsiveNavButton>
-                        </li>
-                        <li>
-                            <ResponsiveNavButton onClick={logout}>
-                                Sign Out
-                            </ResponsiveNavButton>
+                            <MenuItem onClick={logout}>Sign Out</MenuItem>
                         </li>
                     </ul>
                 </div>

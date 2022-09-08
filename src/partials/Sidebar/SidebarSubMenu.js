@@ -8,8 +8,6 @@ const SidebarSubMenu = ({ subactive = false, item }) => {
                     className={`flex px-3 py-2 lg:py-1.5 pl-16 items-center side-navs  hover:text-theme-1 ${
                         subactive ? 'text-theme-1' : 'text-gray-300'
                     } transition duration-150`}>
-                    {/* <div className=" mr-1">{item.icon}</div> */}
-
                     <span className={` text-md ${subactive && 'font-medium'} `}>
                         {item.title}
                     </span>

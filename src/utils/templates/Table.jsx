@@ -69,7 +69,7 @@ export default function Table({ cols, data, ...props }) {
     return (
         <TabulatorWraper
             HeaderFilter={props.HeaderFilter}
-            ssrp={props.ssrp}
+            serverSidePagination={props.serverSidePagination}
             setSearch={props.setSearch}
             gotoPage={props.gotoPage}
             data={data}

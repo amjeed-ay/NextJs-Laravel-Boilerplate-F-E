@@ -1,5 +1,5 @@
 import axios from '@/lib/axios'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import notify from '@/components/Toast'
 import useSWR from 'swr'
@@ -22,13 +22,10 @@ export const useAuth = ({
                 }),
         {
             onErrorRetry: error => {
-                // Never retry on 404.
                 if (error.status === 401) return
 
                 if (error.status === 500) return
             },
-            // revalidateIfStale: false,
-            // revalidateOnFocus: false,
         },
     )
 

@@ -95,7 +95,7 @@ export const useCrud = ({ queryParams, callApi = false, route } = {}) => {
     }
 
     useEffect(() => {
-        if (error && process.env.APP_DEBUG === true) logout()
+        if (error && !process.env.APP_DEBUG) logout()
     }, [data, error])
 
     return {

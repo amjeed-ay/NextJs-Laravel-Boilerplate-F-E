@@ -16,45 +16,35 @@ function PermissionsTree({ setFieldValue, values }) {
 
     const hasSelectedChild = nodes => {
         if (nodes === null) return false
-        // sai a sakashi ciki
         if (Array.isArray(nodes.children)) {
             return nodes.children.some(item => values.includes(item.id))
         }
-
         return false
     }
 
     const hasUnSelectedChild = nodes => {
         if (nodes === null) return false
-        // sai a sakashi ciki
         if (Array.isArray(nodes.children)) {
             return nodes.children.some(item => !values.includes(item.id))
         }
-
         return false
     }
 
-    //node is always the root "Parent"
-    //id is id of node clicked
     function getChildById(node, id) {
         let array = []
-
-        //returns an array of nodes ids: clicked node id and all children node ids
         function getAllChild(nodes) {
             if (nodes === null) return []
-            array.push(nodes.id) // sai a sakashi ciki
+            array.push(nodes.id)
             if (Array.isArray(nodes.children)) {
-                //idan yana da yaya' suma sai a tache su
                 nodes.children.forEach(node => {
-                    array = [...array, ...getAllChild(node)] // aka dauko saura sannan aka sa nemo id
+                    array = [...array, ...getAllChild(node)]
 
-                    array = array.filter((v, i) => array.indexOf(v) === i) // arrange and filter duplicate
+                    array = array.filter((v, i) => array.indexOf(v) === i)
                 })
             }
             return array
         }
 
-        //returns the node object that was values
         function getNodeById(nodes, id) {
             if (nodes.id === id) {
                 return nodes
@@ -74,20 +64,19 @@ function PermissionsTree({ setFieldValue, values }) {
         return getAllChild(getNodeById(node, id))
     }
 
-    function getOnChange(checked, nodes) {
-        //gets all freshly values or unselected nodes
+    function onChange(checked, nodes) {
         const allNode = getChildById(
             permissions?.find(itm => itm.model === nodes.model),
             nodes.id,
         )
-        //combines newly values nodes with existing selection
-        //or filters out newly deselected nodes from existing selection
+
         let array = checked
             ? [...values, ...allNode]
             : values.filter(value => !allNode.includes(value))
         array = array.filter(
             (v, i) => array.indexOf(v) === i && typeof v != 'string',
         )
+
         setFieldValue('permissions', array)
     }
 
@@ -110,10 +99,7 @@ function PermissionsTree({ setFieldValue, values }) {
                                     hasUnSelectedChild(nodes)
                                 }
                                 onChange={event =>
-                                    getOnChange(
-                                        event.currentTarget.checked,
-                                        nodes,
-                                    )
+                                    onChange(event.currentTarget.checked, nodes)
                                 }
                                 sx={{
                                     color: tailwindConfig().theme.colors
