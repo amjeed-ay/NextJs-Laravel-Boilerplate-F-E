@@ -7,3 +7,9 @@ In this project, Laravel Breeze - Next.js Edition https://github.com/laravel/bre
 Back-End Repo: https://github.com/amjeed-ay/NextJs-Laravel-Boilerplate-B-E
 
 Demo Url: https://laravel-nextjs.netlify.app Email:admin@admin.com Password: password
+
+![Screenshot 2022-09-08 165235](https://user-images.githubusercontent.com/72697280/189169353-f4b999f7-5ca7-403b-9566-dd33caad5d04.jpg)
+
+![Screenshot 2022-09-08 165310](https://user-images.githubusercontent.com/72697280/189169347-874bd2d7-5704-4083-a42c-afbbab3607d9.jpg)
+
+![Screenshot 2022-09-08 165455](https://user-images.githubusercontent.com/72697280/189169351-78148792-4f89-46e5-8acd-1b25c539d408.jpg)
