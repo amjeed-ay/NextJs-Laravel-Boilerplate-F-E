@@ -1,7 +1,7 @@
 import Button from '@/components/Button'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -10,22 +10,12 @@ import InputField from '@/components/InputField'
 import ToggleSwitch from '@/components/ToggleSwitch'
 
 const Login = () => {
-    const router = useRouter()
-
     const { login } = useAuth({
         middleware: 'guest',
         redirectIfAuthenticated: '/dashboard',
     })
-    const [status, setStatus] = useState(null)
-    const [processing, setProcessing] = useState(false)
 
-    useEffect(() => {
-        if (router.query.reset?.length > 0 && errors.length === 0) {
-            setStatus(atob(router.query.reset))
-        } else {
-            setStatus(null)
-        }
-    })
+    const [processing, setProcessing] = useState(false)
 
     return (
         <Guest>
@@ -43,15 +33,14 @@ const Login = () => {
                         'Password Field is Required',
                     ),
                 })}
-                onSubmit={(values, { setSubmitting, resetForm }) => {
+                onSubmit={values => {
                     setProcessing(true)
                     login({
                         ...values,
-                        setStatus,
                         setProcessing,
                     })
                 }}>
-                {props => (
+                {() => (
                     <Form className="w-full p-5">
                         <div className=" text-gray-300 py-1 border rounded-md flex justify-center mr-2 w-full items-center ">
                             <span className="tracking-widest font-medium ml-1 flex  text-2xl ">

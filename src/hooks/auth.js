@@ -31,9 +31,8 @@ export const useAuth = ({
 
     const csrf = () => axios.get('/sanctum/csrf-cookie')
 
-    const login = async ({ setStatus, setProcessing, ...props }) => {
+    const login = async ({ setProcessing, ...props }) => {
         await csrf()
-        setStatus(null)
 
         axios
             .post('/login', props)
